@@ -60,12 +60,12 @@ class Client:
             try:
                 model_params_updated = client_model_trainer.train_model()
 
-                if self.training_type == TrainingType.GOSSIP_MNIST:
-                    self.model_params = model_params_updated
-                    self.finish_round()
-                else:
-                    model_params_updated = model_params_to_request_params(training_type, model_params_updated)
-                    self.update_model_params_on_server(model_params_updated)
+                # if self.training_type == TrainingType.GOSSIP_MNIST:
+                #     self.model_params = model_params_updated
+                #     self.finish_round()
+                # else:
+                model_params_updated = model_params_to_request_params(training_type, model_params_updated)
+                self.update_model_params_on_server(model_params_updated)
             except Exception as e:
                 raise e
             finally:
