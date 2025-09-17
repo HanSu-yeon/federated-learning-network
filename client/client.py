@@ -6,11 +6,11 @@ from os import environ
 
 from requests.exceptions import Timeout
 
-from .deterministic_mnist_model_trainer import DeterministicMnistModelTrainer
+# from .deterministic_mnist_model_trainer import DeterministicMnistModelTrainer
 from .utils import model_params_to_request_params
 from .mnist_model_trainer import MnistModelTrainer
-from .chest_x_ray_model_trainer import ChestXRayModelTrainer
-from .gossip_mnist_model_trainer import GossipMnistModelTrainer
+# from .chest_x_ray_model_trainer import ChestXRayModelTrainer
+# from .gossip_mnist_model_trainer import GossipMnistModelTrainer
 from .client_status import ClientStatus
 from .config import DEFAULT_SERVER_URL
 from .training_type import TrainingType
@@ -45,13 +45,13 @@ class Client:
 
             if self.training_type == TrainingType.MNIST:
                 client_model_trainer = MnistModelTrainer(model_params, federated_learning_config)
-            elif self.training_type == TrainingType.DETERMINISTIC_MNIST:
-                client_model_trainer = DeterministicMnistModelTrainer(model_params, federated_learning_config, client_id, round, round_size)
-            elif self.training_type == TrainingType.GOSSIP_MNIST:
-                # Using model params stored on the client
-                client_model_trainer = GossipMnistModelTrainer(self.model_params, federated_learning_config, client_id, round, round_size, clients)
-            elif self.training_type == TrainingType.CHEST_X_RAY_PNEUMONIA:
-                client_model_trainer = ChestXRayModelTrainer(model_params, federated_learning_config)
+            # elif self.training_type == TrainingType.DETERMINISTIC_MNIST:
+            #     client_model_trainer = DeterministicMnistModelTrainer(model_params, federated_learning_config, client_id, round, round_size)
+            # elif self.training_type == TrainingType.GOSSIP_MNIST:
+            #     # Using model params stored on the client
+            #     client_model_trainer = GossipMnistModelTrainer(self.model_params, federated_learning_config, client_id, round, round_size, clients)
+            # elif self.training_type == TrainingType.CHEST_X_RAY_PNEUMONIA:
+            #     client_model_trainer = ChestXRayModelTrainer(model_params, federated_learning_config)
             else:
                 raise ValueError('Unsupported training type', training_type)
 
