@@ -13,7 +13,7 @@ from server import create_app
 def main():
     """서버를 실행하는 메인 함수"""
     # 서버 포트 설정 (환경 변수에서 가져오거나 기본값 사용)
-    server_port = int(os.environ.get('SERVER_PORT', 5000))
+    server_port = int(os.environ.get('SERVER_PORT', 8084))
     
     # 서버 시작 메시지 출력
     print(f"Starting Federated Learning server on port {server_port}")
