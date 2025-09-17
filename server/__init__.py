@@ -5,9 +5,13 @@ from flask import (
     Flask, Response, request, render_template, jsonify
 )
 
-from .server import Server
-from .training_type import TrainingType
-from .utils import request_params_to_model_params
+# from server import Server
+# from training_type import TrainingType
+# from utils import request_params_to_model_params
+# 상대 임포트를 절대 임포트로 변경
+from server.server import Server
+from server.training_type import TrainingType
+from server.utils import request_params_to_model_params
 
 
 def create_app(test_config=None):
@@ -82,3 +86,21 @@ def create_app(test_config=None):
         return 'This page does not exist', 404
 
     return app
+
+
+# ============================================
+# 서버 실행을 위한 메인 실행 코드
+# ============================================
+if __name__ == '__main__':
+    # 서버 포트 설정 (환경 변수에서 가져오거나 기본값 사용)
+    server_port = int(os.environ.get('SERVER_PORT', 8001))
+    
+    # 서버 시작 메시지 출력
+    print(f"Starting Federated Learning server on port {server_port}")
+    print("Server will manage federated learning clients and coordinate training")
+    
+    # Flask 앱을 지정된 포트에서 실행
+    # host='0.0.0.0': 모든 네트워크 인터페이스에서 접근 가능
+    # debug=True: 개발 모드로 실행 (코드 변경 시 자동 재시작)
+    app = create_app()
+    app.run(host='0.0.0.0', port=server_port, debug=True)
